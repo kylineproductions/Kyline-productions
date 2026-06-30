@@ -28,7 +28,7 @@ const navItems = [
   <header class="site-header">
     <div class="nav-inner">
       <a href="/" class="logo">KYLINE<span>.</span>PRODUCTIONS</a>
-      <nav class="channels" aria-label="Primary">
+      <nav class="channels" aria-label="Primary" id="primaryNav">
         <ul style="display:flex; list-style:none; margin:0; padding:0;">
           {navItems.map(item => (
             <li>
@@ -40,7 +40,7 @@ const navItems = [
           ))}
         </ul>
       </nav>
-      <button class="nav-toggle" aria-label="Menu">MENU</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="primaryNav">MENU</button>
     </div>
   </header>
 
@@ -62,5 +62,13 @@ const navItems = [
       </div>
     </div>
   </footer>
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('primaryNav');
+  toggle?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+</script>
 </body>
 </html>
