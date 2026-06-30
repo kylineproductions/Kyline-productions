@@ -146,6 +146,23 @@ nav.channels a.active { color: var(--text); background: var(--surface); }
 @media (max-width: 860px) {
   nav.channels { display: none; }
   .nav-toggle { display: block; }
+  nav.channels.open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.channels.open ul { flex-direction: column; width: 100%; }
+  nav.channels.open a {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding: 0.9rem 1.5rem;
+    flex-direction: row;
+    gap: 0.6rem;
+  }
 }
 
 /* ---- Signal chain divider (signature element) ---- */
