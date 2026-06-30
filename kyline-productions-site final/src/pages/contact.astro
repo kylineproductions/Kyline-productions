@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SignalChain from '../components/SignalChain.astro';
+---
+<Layout title="Contact" description="Get in touch with Kyline Productions.">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Contact</span>
+      <h1>Get in touch.</h1>
+      <p class="lede">Booking inquiries, gear questions, or just want to talk shop — reach out below.</p>
+    </div>
+  </section>
+
+  <SignalChain labels={['Send', 'Reply', 'Book']} />
+
+  <section class="section-tight">
+    <div class="wrap" style="max-width:600px;">
+      <div class="card">
+        <form action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+
+          <button type="submit" class="btn btn-solid">Send message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>

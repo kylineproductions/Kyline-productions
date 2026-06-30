@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Kyline Productions — live audio engineering for events, tours, and venues.' } = Astro.props;
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const navItems = [
+  { href: '/services', num: '01', label: 'Services' },
+  { href: '/portfolio', num: '02', label: 'Portfolio' },
+  { href: '/music', num: '03', label: 'Music' },
+  { href: '/reviews', num: '04', label: 'Reviews' },
+  { href: '/contact', num: '05', label: 'Contact' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} · Kyline Productions</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23E8A33D%22/></svg>" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="/" class="logo">KYLINE<span>.</span>PRODUCTIONS</a>
+      <nav class="channels" aria-label="Primary">
+        <ul style="display:flex; list-style:none; margin:0; padding:0;">
+          {navItems.map(item => (
+            <li>
+              <a href={item.href} class={isActive(item.href) ? 'active' : ''}>
+                <span class="chnum">CH {item.num}</span>
+                <span>{item.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Menu">MENU</button>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div class="logo">KYLINE<span>.</span>PRODUCTIONS</div>
+        <p class="spec" style="margin-top:0.5em;">Live audio engineering · San Marcos &amp; San Diego County, CA</p>
+      </div>
+      <div class="foot-links">
+        <a href="/services">Services</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/reviews">Reviews</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

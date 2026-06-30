@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SignalChain from '../components/SignalChain.astro';
+
+const tiers = [
+  {
+    name: 'Single Event',
+    price: 'From $450',
+    desc: 'One night, one room. Load-in, soundcheck, the show, strike.',
+    items: ['FOH or monitor mixing', 'Up to 6-hour call', 'Your gear or rented PA'],
+  },
+  {
+    name: 'Weekly / Residency',
+    price: 'From $250 / service',
+    desc: 'For churches and venues with a standing weekly need.',
+    items: ['Consistent mix week to week', 'System tuning included', 'Volunteer team training available'],
+  },
+  {
+    name: 'Tour / Multi-Day',
+    price: 'Custom quote',
+    desc: 'Multi-date runs, festivals, or full productions needing a dedicated engineer.',
+    items: ['Advance &amp; system design', 'Day rate + travel', 'Full production coordination'],
+  },
+];
+---
+<Layout title="Services" description="Book live audio engineering for your event, venue, or tour.">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Services</span>
+      <h1>Book the board.</h1>
+      <p class="lede">Live mixing and system design for events across San Diego County. Tell me about your show and I'll get back to you within a day.</p>
+    </div>
+  </section>
+
+  <SignalChain labels={['Single Event', 'Weekly', 'Tour']} />
+
+  <section class="section-tight">
+    <div class="wrap grid-3">
+      {tiers.map(t => (
+        <div class="card">
+          <h3>{t.name}</h3>
+          <p class="rating">{t.price}</p>
+          <p class="spec">{t.desc}</p>
+          <ul class="spec" style="padding-left:1.1em; margin:0;">
+            {t.items.map(i => <li set:html={i} />)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap grid-2">
+      <div>
+        <span class="eyebrow">Service Area</span>
+        <h2>San Diego County &amp; beyond</h2>
+        <p>Based in San Marcos, CA — regularly working venues across North County and greater San Diego. Travel available for tour dates and multi-day productions; ask about rates outside the area.</p>
+        <span class="eyebrow" style="margin-top:2rem;">What I bring</span>
+        <p class="spec">Personal mixing console &amp; outboard gear available on request, or I'll run your house system. Comfortable with Allen &amp; Heath, DiGiCo, Yamaha, and Behringer platforms.</p>
+      </div>
+      <div class="card">
+        <h3>Request a quote</h3>
+        <form action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="date">Event date</label>
+          <input type="date" id="date" name="event_date" />
+
+          <label for="details">Tell me about the event</label>
+          <textarea id="details" name="details" rows="5" placeholder="Venue, type of event, attendance, what you need mixed..."></textarea>
+
+          <button type="submit" class="btn btn-solid">Send inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  labels?: string[];
+}
+const { labels = [] } = Astro.props;
+const nodeCount = Math.max(labels.length, 4);
+---
+<div class="signal-chain" role="presentation">
+  {Array.from({ length: nodeCount }).map((_, i) => (
+    <>
+      <span class={`node ${i % 2 === 0 ? 'lit' : ''}`}></span>
+      {labels[i] && <span class="label">{labels[i]}</span>}
+      {i < nodeCount - 1 && <span class="seg"></span>}
+    </>
+  ))}
+</div>

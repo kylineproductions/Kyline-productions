@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SignalChain from '../components/SignalChain.astro';
+
+const work = [
+  { tag: 'Theater', title: 'Alice in Wonderland', venue: 'Bornemann Theatre, San Marcos', note: 'Full sound design and live mix for a multi-weekend run.' },
+  { tag: 'Concert', title: 'Sedaka Experience', venue: 'Bornemann Theatre, San Marcos', note: 'FOH for a two-act tribute concert benefiting a local arts program.' },
+  { tag: 'Corporate', title: 'Brand Activation Series', venue: 'San Diego County', note: 'System setup and mixing for multi-day corporate events.' },
+  { tag: 'Worship', title: 'Weekly Service Mix', venue: 'North County, CA', note: 'Standing weekly FOH and monitor engineering.' },
+  { tag: 'Marching Arts', title: 'Front Ensemble', venue: 'Pulse, Gold, Broken City Drum &amp; Bugle Corps', note: 'Performer background informing how I mix percussion-heavy live sound.' },
+];
+---
+<Layout title="Portfolio" description="Live audio engineering work — theater, concerts, corporate events, and worship.">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Portfolio</span>
+      <h1>Work on record.</h1>
+      <p class="lede">A running log of productions, venues, and events. Photos and video coming as each gets added.</p>
+    </div>
+  </section>
+
+  <SignalChain labels={['Theater', 'Concert', 'Corporate', 'Worship']} />
+
+  <section class="section-tight">
+    <div class="wrap">
+      {work.map(w => (
+        <div class="card" style="margin-bottom:1.2rem; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <span class="tag">{w.tag}</span>
+            <h3 style="margin-top:0.4em;">{w.title}</h3>
+            <p class="spec" set:html={w.venue} />
+            <p style="margin:0;">{w.note}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="text-align:center;">
+    <div class="wrap">
+      <p class="spec">Photos, video reels, and full credits being added on a rolling basis.</p>
+      <a href="/contact" class="btn">Have a project in mind? →</a>
+    </div>
+  </section>
+</Layout>

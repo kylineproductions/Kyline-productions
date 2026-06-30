@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SignalChain from '../components/SignalChain.astro';
+
+const tagColors: Record<string, string> = {
+  Gear: 'var(--amber)',
+  Venue: 'var(--teal)',
+  Band: 'var(--red)',
+  Vlog: 'var(--text)',
+};
+
+const reviews = [
+  {
+    tag: 'Vlog',
+    title: 'Load-In: Bornemann Theatre',
+    rating: null,
+    youtube: null, // e.g. 'dQw4w9WgXcQ'
+    body: 'Walkthrough of a full load-in and soundcheck — patch, system tuning, and a quick read on how the room behaves once people are in the seats.',
+  },
+  {
+    tag: 'Gear',
+    title: 'Allen & Heath SQ-6',
+    rating: '8.7 / 10',
+    youtube: null,
+    body: 'The board I reach for first on a one-engineer load-in. Fast to navigate under pressure, and the preamps hold up against boards twice the price. Screen real estate gets tight past 24 channels, and the scene recall menu is buried a layer deep — but for solo FOH work, nothing in its price range beats the workflow.',
+  },
+  {
+    tag: 'Venue',
+    title: 'Bornemann Theatre',
+    rating: '8.9 / 10',
+    youtube: null,
+    body: 'A proscenium room with surprisingly even natural acoustics. House system covers the room well with minimal EQ work needed. Limited fly space and a tight wing for monitor placement — plan your monitor world accordingly.',
+  },
+  {
+    tag: 'Band',
+    title: 'Set Notes: Sedaka Experience',
+    rating: null,
+    youtube: null,
+    body: 'A two-act tribute set with a full horn section — tight arrangements, dynamic range that rewarded a careful FOH mix. Notes on what worked for monitor mixes with a horn-heavy stage plot.',
+  },
+];
+---
+<Layout title="Reviews" description="Gear, venue, and band reviews — plus weekly setup vlogs — from the field.">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Reviews</span>
+      <h1>Notes from the road.</h1>
+      <p class="lede">Gear, venues, bands, and the occasional setup vlog — whatever's worth writing about after a show. No rigid schedule, no spec-sheet reviews.</p>
+    </div>
+  </section>
+
+  <SignalChain labels={['Gear', 'Venue', 'Band', 'Vlog']} />
+
+  <section class="section-tight">
+    <div class="wrap">
+      {reviews.map(r => (
+        <article class="card" style="margin-bottom:1.5rem;">
+          <span class="tag" style={`border-color:${tagColors[r.tag]}; color:${tagColors[r.tag]};`}>{r.tag}</span>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.5rem;">
+            <h3 style="margin-bottom:0.2em;">{r.title}</h3>
+            {r.rating && <span class="rating">{r.rating}</span>}
+          </div>
+          {r.youtube && (
+            <div style="aspect-ratio:16/9; margin:1rem 0; border:1px solid var(--line);">
+              <iframe
+                width="100%" height="100%"
+                src={`https://www.youtube.com/embed/${r.youtube}`}
+                title={r.title}
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          )}
+          <p>{r.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section style="text-align:center;">
+    <div class="wrap">
+      <p class="spec">New entries posted whenever there's something worth saying — gear, rooms, bands, or a look behind the board.</p>
+    </div>
+  </section>
+</Layout>

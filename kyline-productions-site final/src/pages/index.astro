@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SignalChain from '../components/SignalChain.astro';
+---
+<Layout title="Live Audio Engineering">
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">San Marcos &amp; San Diego County, CA</span>
+      <h1>Sound that<br/>gets out of the way.</h1>
+      <p class="lede">Live mixing, monitor engineering, and system design for bands, churches, corporate events, and theater productions. Twenty years on stages and behind boards — front ensemble to front-of-house.</p>
+      <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="/services" class="btn btn-solid">Book a date</a>
+        <a href="/portfolio" class="btn">See the work</a>
+      </div>
+    </div>
+  </section>
+
+  <SignalChain labels={['Input', 'Gain', 'EQ', 'Comp', 'Mix', 'Output']} />
+
+  <section class="section-tight">
+    <div class="wrap grid-3">
+      <div class="card">
+        <span class="eyebrow">Ch 01</span>
+        <h3>Live Mixing</h3>
+        <p class="spec">FOH and monitors for live music, worship, and corporate events. Your show, mixed for the room it's actually in.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Ch 02</span>
+        <h3>System Design</h3>
+        <p class="spec">PA selection and tuning for venues and one-off events — right coverage, right level, no guesswork.</p>
+      </div>
+      <div class="card">
+        <span class="eyebrow">Ch 03</span>
+        <h3>Reviews</h3>
+        <p class="spec">Gear, venues, bands, and the occasional setup vlog — field notes from someone actually mixing the show.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap" style="text-align:center;">
+      <span class="eyebrow">On the boards</span>
+      <h2>Currently mixing for —</h2>
+      <p class="spec" style="max-width:32em; margin:0 auto;">Touring acts, weekly worship services, corporate activations, and theatrical productions across San Diego County. Full credits in the portfolio.</p>
+      <div style="margin-top:1.5rem;">
+        <a href="/portfolio" class="btn">View portfolio →</a>
+      </div>
+    </div>
+  </section>
+</Layout>
