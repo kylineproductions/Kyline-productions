@@ -11,10 +11,23 @@ const tagColors: Record<string, string> = {
 
 const reviews = [
   {
+    tag: 'Gear',
+    title: 'Allen & Heath Avantis',
+    rating: '9.2 / 10',
+    youtube: null,
+    image: '/avantis.jpg',
+    amazon: 'https://www.amazon.com/dp/B084Z5MNKG/?tag=kylineproduct-20',
+    sweetwater: 'https://www.sweetwater.com/store/detail/Avantis--allen-and-heath-avantis-digital-mixer',
+    body: "I've been behind the Avantis for about two years now and it continues to impress. The sheer flexibility is something I've always wanted in a digital mixer — and something no other console in this price range comes close to matching. We purchased at 64 channels, and recent firmware updates have expanded that to 96, which tells you everything about how Allen & Heath supports their products long-term. Our current setup runs an S-Link GX4816 for our installed patch bay and a Dante expander for flexible stage placement using just two ethernet cables. The built-in FX processors are world class — the new Compstortion in particular has become my go-to for every oldies tribute band on the roster. My only wish is that we'd included a MADI card from the start, though it's available as an expansion. Great board, great shows.",
+  },
+  {
     tag: 'Vlog',
     title: 'Load-In: Bornemann Theatre',
     rating: null,
-    youtube: null, // e.g. 'dQw4w9WgXcQ'
+    youtube: null,
+    image: null,
+    amazon: null,
+    sweetwater: null,
     body: 'Walkthrough of a full load-in and soundcheck — patch, system tuning, and a quick read on how the room behaves once people are in the seats.',
   },
   {
@@ -22,6 +35,9 @@ const reviews = [
     title: 'Allen & Heath SQ-6',
     rating: '8.7 / 10',
     youtube: null,
+    image: null,
+    amazon: 'https://www.amazon.com/dp/B07YVZZ7HH/?tag=kylineproduct-20',
+    sweetwater: null,
     body: 'The board I reach for first on a one-engineer load-in. Fast to navigate under pressure, and the preamps hold up against boards twice the price. Screen real estate gets tight past 24 channels, and the scene recall menu is buried a layer deep — but for solo FOH work, nothing in its price range beats the workflow.',
   },
   {
@@ -29,6 +45,9 @@ const reviews = [
     title: 'Bornemann Theatre',
     rating: '8.9 / 10',
     youtube: null,
+    image: null,
+    amazon: null,
+    sweetwater: null,
     body: 'A proscenium room with surprisingly even natural acoustics. House system covers the room well with minimal EQ work needed. Limited fly space and a tight wing for monitor placement — plan your monitor world accordingly.',
   },
   {
@@ -36,6 +55,9 @@ const reviews = [
     title: 'Set Notes: Sedaka Experience',
     rating: null,
     youtube: null,
+    image: null,
+    amazon: null,
+    sweetwater: null,
     body: 'A two-act tribute set with a full horn section — tight arrangements, dynamic range that rewarded a careful FOH mix. Notes on what worked for monitor mixes with a horn-heavy stage plot.',
   },
 ];
@@ -46,6 +68,7 @@ const reviews = [
       <span class="kicker">Reviews</span>
       <h1>Notes from the road.</h1>
       <p class="lede">Gear, venues, bands, and the occasional setup vlog — whatever's worth writing about after a show. No rigid schedule, no spec-sheet reviews.</p>
+      <p class="spec" style="margin-top:1rem; font-size:0.75rem;">Some links on this page are affiliate links. If you purchase through them I may earn a small commission at no extra cost to you.</p>
     </div>
   </section>
 
@@ -60,6 +83,13 @@ const reviews = [
             <h3 style="margin-bottom:0.2em;">{r.title}</h3>
             {r.rating && <span class="rating">{r.rating}</span>}
           </div>
+
+          {r.image && (
+            <div style="margin:1rem 0;">
+              <img src={r.image} alt={r.title} style="width:100%; max-width:500px; height:280px; object-fit:cover; border:1px solid var(--line); display:block;" />
+            </div>
+          )}
+
           {r.youtube && (
             <div style="aspect-ratio:16/9; margin:1rem 0; border:1px solid var(--line);">
               <iframe
@@ -72,7 +102,23 @@ const reviews = [
               ></iframe>
             </div>
           )}
+
           <p>{r.body}</p>
+
+          {(r.amazon || r.sweetwater) && (
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1rem;">
+              {r.amazon && (
+                <a href={r.amazon} target="_blank" rel="noopener noreferrer" class="btn btn-solid" style="font-size:0.75rem; padding:0.6em 1.2em;">
+                  Buy on Amazon
+                </a>
+              )}
+              {r.sweetwater && (
+                <a href={r.sweetwater} target="_blank" rel="noopener noreferrer" class="btn" style="font-size:0.75rem; padding:0.6em 1.2em;">
+                  Buy on Sweetwater
+                </a>
+              )}
+            </div>
+          )}
         </article>
       ))}
     </div>
